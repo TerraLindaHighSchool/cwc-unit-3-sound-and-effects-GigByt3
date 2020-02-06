@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BackgroundRepeat : MonoBehaviour
 {
+    public float speed;
 	private Vector3 startPos;
 	private float repeatWidth;
     // Start is called before the first frame update
@@ -16,9 +17,11 @@ public class BackgroundRepeat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.x < startPos.x - repeatWidth)
+        if(transform.position.x > startPos.x + repeatWidth)
         {
         	transform.position = startPos;
+        } else {
+            transform.Translate(Vector3.right * Time.deltaTime * speed);
         }
     }
 }
