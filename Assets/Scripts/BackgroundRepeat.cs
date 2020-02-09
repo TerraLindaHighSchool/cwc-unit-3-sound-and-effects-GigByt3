@@ -7,9 +7,11 @@ public class BackgroundRepeat : MonoBehaviour
     public float speed;
 	private Vector3 startPos;
 	private float repeatWidth;
+    private PlayerController pcs;
     // Start is called before the first frame update
     void Start()
     {
+        pcs = GameObject.Find("Player").GetComponent<PlayerController>();
         startPos = transform.position;
         repeatWidth = GetComponent<BoxCollider>().size.x / 2 ;
     }
@@ -17,11 +19,21 @@ public class BackgroundRepeat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.x > startPos.x + repeatWidth)
+        if(pcs.gameOver != true)
         {
-        	transform.position = startPos;
+            if(transform.position.x > startPos.x + repeatWidth)
+            {
+            	transform.position = startPos;
+            } else {
+                transform.Translate(Vector3.right * Time.deltaTime * speed);
+            }
         } else {
-            transform.Translate(Vector3.right * Time.deltaTime * speed);
+            Die();
         }
+    }
+
+    void Die()
+    {
+        Destroy(this);
     }
 }
