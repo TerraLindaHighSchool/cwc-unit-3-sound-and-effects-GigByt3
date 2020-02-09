@@ -4,7 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Obstacle
+  - Money
+  - Bomb
+  - Background
+  - Ground
   layers:
   - Default
   - TransparentFX
